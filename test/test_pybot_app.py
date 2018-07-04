@@ -6,7 +6,7 @@ import json
 
 from pybot import utils, db
 from pybot.views import app as app
-from pybot.models import NoResultUserRequest
+from pybot.models import UserRequest
 
 
 class TestFlaskApp(unittest.TestCase):
@@ -81,13 +81,13 @@ class TestNoResult(unittest.TestCase):
     def setUp(self):
         app.testing = True
         self.app = app.test_client()
-        mock_no_result = NoResultUserRequest(request="N'importe quoi")
+        mock_no_result = UserRequest(request="N'importe quoi")
         db.session.add(mock_no_result)
 
     def test_database_adding_element(self):
         """Test taht the addition of element in the database is ok"""
-        self.assertTrue(NoResultUserRequest.query.filter_by(request="N'importe quoi").first())
-        self.assertFalse(NoResultUserRequest.query.filter_by(request="Pas n'importe quoi").first())
+        self.assertTrue(UserRequest.query.filter_by(request="N'importe quoi").first())
+        self.assertFalse(UserRequest.query.filter_by(request="Pas n'importe quoi").first())
 
     def test_no_result_page(self):
         """Test that the connection to the page get a 200 status code"""

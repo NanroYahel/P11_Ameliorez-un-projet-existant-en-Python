@@ -8,24 +8,48 @@
 		<link rel="stylesheet" type="text/css" href="static/css/style.css">
 	</head>
 
+	<header>
+		<h1>Analyse des requêtes sans résultat</h1>
+	</header>
+
 	<body>
-		<div>
-			<table class="table">
-				<thead>
-				<tr>
-					<th>Date</th>
-					<th>User query</th>
-				</tr>
-				</thead>
-				<tbody>
-					{% for entry in list_no_result %}
-					<tr>
-						<td>{{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-						<td>{{ entry.request }}</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+		<div class="no_result_data">
+			<h3 class="no_result">Dernières requêtes sans résultat</h3>
+			<div class="row">
+				<div class="no_result_data">
+
+					<div class="col-lg-offset-1 col-lg-6 no_result_data">
+						
+						<table class="table">
+							<thead>
+							<tr>
+								<th>Date</th>
+								<th>Mots clés</th>
+							</tr>
+							</thead>
+							<tbody>
+								{% for entry in context['list_no_result'] %}
+								<tr>
+									<td>{{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+									<td>{{ entry.request }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="no_result_graph">
+			<h3 class="no_result">Nombre de requêtes sans résultat / Nombre de requêtes total</h3>
+			<div class="row">
+				<div class="col-lg-offset-1 col-lg-6">
+					<p>ICI ON VA METTRE UN GRAPHIQUE QUAND ON SAURA LE FAIRE</p>
+					<p>Nombre de requêtes sans résultat : {{ context['total_no_result'] }}</p>
+					<p>Nombre total de requêtes : {{ context['total_requests'] }}</p>
+				</div>
+			</div>
 		</div>
 	</body>
 

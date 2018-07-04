@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, jsonify
 from datetime import datetime
 
 from pybot import app, db
+from pybot.models import NoResultUserRequest
 import pybot.utils as utils
 import pybot.config as conf
 
@@ -65,4 +66,17 @@ def google_api():
 		result_lat, result_long, address = utils.get_data_from_google_maps(keywords)
 		return jsonify(result_lat, result_long, address)
 	except TypeError:
+		#### New feature
+		# Collect the data of User Request with no result
+		no_result_case = NoResultUserRequest(request=keywords)
+		db.session.add(no_result_case)
+		db.session.commit()
+		#### End new feature
 		return jsonify('NORETURN')
+
+#### New feature ####
+@app.route('/no_result')
+def no_result():
+	"""This view is use to display the elements of the database as a table"""
+	list_no_result = NoResultUserRequest.query.all()
+	return render_template('no_result.html', list_no_result=list_no_result)

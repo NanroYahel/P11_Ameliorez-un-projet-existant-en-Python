@@ -9,4 +9,4 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 
-from pybot import views
+from pybot import views, models

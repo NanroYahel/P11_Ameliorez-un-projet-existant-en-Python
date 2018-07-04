@@ -4,8 +4,9 @@ import unittest
 from unittest.mock import patch
 import json
 
-from pybot import utils
+from pybot import utils, db
 from pybot.views import app as app
+from pybot.models import NoResultUserRequest
 
 
 class TestFlaskApp(unittest.TestCase):
@@ -74,9 +75,29 @@ class TestUtils(unittest.TestCase):
         test_result = utils.get_data_from_wiki("test")
         self.assertEqual(test_result, 'Paris (prononcé [pa.ʁi] ) est la capitale de la France.')
 
+class TestNoResult(unittest.TestCase):
+    """Test the functions linked to the database"""
+
+    def setUp(self):
+        app.testing = True
+        self.app = app.test_client()
+        mock_no_result = NoResultUserRequest(request="N'importe quoi")
+        db.session.add(mock_no_result)
+
+    def test_database_adding_element(self):
+        """Test taht the addition of element in the database is ok"""
+        self.assertTrue(NoResultUserRequest.query.filter_by(request="N'importe quoi").first())
+        self.assertFalse(NoResultUserRequest.query.filter_by(request="Pas n'importe quoi").first())
+
+    def test_no_result_page(self):
+        """Test that the connection to the page get a 200 status code"""
+        rv = self.app.get('/no_result')
+        self.assertEqual(rv.status_code, 200)
+
+    def test_no_result_page_data(self):
+        """Test that the first element of the database is display on the page"""
+        rv = self.app.get('/no_result')
+        self.assertIn(b"mademanden aaucunsens", rv.data)
 
 if __name__ == "__main__":
     unittest.main()
-
-
-

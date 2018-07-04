@@ -2,14 +2,10 @@ from flask import Flask, render_template, request, jsonify
 
 from datetime import datetime
 
+from pybot import app, db
 import pybot.utils as utils
-
 import pybot.config as conf
 
-app = Flask(__name__)
-
-# #Config option
-# app.config.from_object('config')
 
 NO_RESULT_SENTENCE = "Euh... Non là, je n'ai rien d'intéressant à ce sujet ! "
 

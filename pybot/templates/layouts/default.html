@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PyBot - Le papy Robot</title>
+		
+		<!-- For using bootstrap -->
+		<link rel="stylesheet" type="text/css" href="static/css/bootstrap/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="static/css/style.css">
+	</head>
+	<body>
+		<div class="container">
+			<header>		
+				<h1> Bienvenue chez GrandPy</h1>
+				<p>J'ai la réponse à toutes vos questions ! </p>
+			</header>
+
+			<!-- For unsing jquery -->
+			<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.js"></script>
+			<script type="text/javascript">
+	  			var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+			</script>
+
+			{% block body %}{% endblock %}
+			<footer>
+				<p>{{now.year}} &middot; Ce site a été développé par Ronan LE HAY</p>
+				<p><a href="https://github.com/NanroYahel/P7_Creez-GrandPy-Bot-le-papy-robot">Ameliorer GrandPy</a></p>
+				<p><a href="https://fr.linkedin.com/in/ronan-le-hay-3bb64b14a">LinkedIn de l'auteur</a></p>
+			</footer>
+		</div>
+	</body>
+
+</html>

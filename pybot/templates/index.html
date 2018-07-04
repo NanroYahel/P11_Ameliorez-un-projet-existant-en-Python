@@ -1,0 +1,26 @@
+{% extends '/layouts/default.html' %}
+
+{% block body %}
+
+		<div class="row">
+			<div class="col-md-offset-1 col-md-5" id="chat">
+			</div>
+			<div class="col-md-5" id="map">
+			</div>
+		</div>
+		<div class="row">
+			<form method="post" action="">
+				<div class="col-lg-offset-1 col-lg-9">
+					<input type="text" name="question"  id="question-zone" placeholder="Posez votre question à GrandPy">
+				</div>
+				<div class="col-lg-1">
+					<input type="submit"  value="Demander" id="button">
+				</div>
+			</form>
+		</div>
+
+		<script type="text/javascript" src="static/js/chat.js"></script>
+		<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key={{google_key}}">	
+		</script>
+{% endblock body %}

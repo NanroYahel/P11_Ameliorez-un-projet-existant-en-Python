@@ -1,0 +1,94 @@
+textarea{
+	margin-bottom: 20px;
+}
+
+h1{
+	text-align: center;
+}
+
+header p{
+	text-align: center;
+}
+
+footer{
+	margin-top: 150px;
+	text-align: center;
+}
+
+input{
+	width: 100%;
+}
+
+
+#button{
+	min-width: 90px;
+}
+
+#container{
+	margin-left: 20px;
+	margin-right: 20px; 
+}
+
+#chat{
+	border: 2px solid black;
+	height: 100%;
+	min-height: 500px;
+	margin-bottom: 40px;
+	margin-right: 10px;	
+	max-height: 500px;
+	word-wrap: break-word;
+	overflow: auto;
+}
+
+/*Use for the "User" word in the chat box*/
+.usr{
+	font-weight: bold;
+}
+
+#map{
+	margin-left: 10px;
+	min-height: 500px;
+	background: url("../img/robot_500.png") no-repeat center;
+}
+
+@media all and (max-width: 1024px)
+{
+	#chat{
+	min-height: 300px;	
+	max-height: 300px;
+	margin-left: 20px;
+	margin-right: 20px; 
+	}
+
+	#map{
+	min-height: 300px;
+	margin-right: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	background: url("../img/robot_300.png") no-repeat center;
+	}
+
+	footer{
+	margin-top: 20px;
+	}
+
+	form{
+	margin-left: 10px;
+	margin-right: 10px;
+	}
+}
+
+
+@media all and (max-width: 480px)
+{
+	#chat{
+	min-height: 200px;	
+	max-height: 200px; 
+	}
+
+	#map{
+	min-height: 200px;
+	background: url("../img/robot_200.png") no-repeat center;
+	}
+
+}

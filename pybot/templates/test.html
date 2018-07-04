@@ -1,0 +1,34 @@
+{% extends '/layouts/default.html' %}
+
+{% block body %}
+
+<div class="row">
+		<div class="col-md-offset-1 col-md-10" id="chat">
+			<div class="row">
+				<div id="map" class="col-md-offset-1 col-md-10">
+				</div>
+			</div>
+			<div class="row">
+				<p id="wiki" class="col-md-offset-1 col-md-10">{{wiki_result}}</p>
+			</div>
+		</div>
+</div>
+<script>
+	function initMap() {
+        var place = {lat: {{result_lat}}, lng: {{result_long}}};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: place
+        });
+        var marker = new google.maps.Marker({
+          position: place,
+          map: map
+        });
+      }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&callback=initMap">	
+</script>
+
+
+{% endblock body %}

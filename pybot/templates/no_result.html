@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PyBot - Le papy Robot</title>
+		
+		<!-- For using bootstrap -->
+		<link rel="stylesheet" type="text/css" href="static/css/bootstrap/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="static/css/style.css">
+	</head>
+
+	<body>
+		<div>
+			<table class="table">
+				<thead>
+				<tr>
+					<th>Date</th>
+					<th>User query</th>
+				</tr>
+				</thead>
+				<tbody>
+					{% for entry in list_no_result %}
+					<tr>
+						<td>{{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+						<td>{{ entry.request }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+</html>

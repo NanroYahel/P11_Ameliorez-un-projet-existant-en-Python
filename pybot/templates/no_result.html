@@ -6,6 +6,7 @@
 		<!-- For using bootstrap -->
 		<link rel="stylesheet" type="text/css" href="static/css/bootstrap/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="static/css/style.css">
+		<script src="https://d3js.org/d3.v5.min.js"></script>
 	</head>
 
 	<header>
@@ -14,6 +15,7 @@
 
 	<body>
 		<div class="no_result_data">
+			<!-- Display a table with the 10 last user requests with no result -->
 			<h3 class="no_result">Dernières requêtes sans résultat</h3>
 			<div class="row">
 				<div class="no_result_data">
@@ -42,15 +44,22 @@
 		</div>
 
 		<div class="no_result_graph">
+			<!-- Display the graphic of Users Request with no result -->
 			<h3 class="no_result">Nombre de requêtes sans résultat / Nombre de requêtes total</h3>
 			<div class="row">
-				<div class="col-lg-offset-1 col-lg-6">
-					<p>ICI ON VA METTRE UN GRAPHIQUE QUAND ON SAURA LE FAIRE</p>
-					<p>Nombre de requêtes sans résultat : {{ context['total_no_result'] }}</p>
+				<div class="col-lg-offset-5 col-lg-6">
+					<p style="color:red;">Nombre de requêtes sans résultat : {{ context['total_no_result'] }}</p>
 					<p>Nombre total de requêtes : {{ context['total_requests'] }}</p>
+					<div class="graph"></div>
 				</div>
 			</div>
 		</div>
+
+		<script>
+			//Get the datas abouts user request to use them in the js file.
+			var data = [{{ context['total_no_result'] }}, {{ context['total_requests_valid'] }}];
+		</script>
+		<script type="text/javascript" src="static/js/graph.js"></script>
 	</body>
 
 </html>

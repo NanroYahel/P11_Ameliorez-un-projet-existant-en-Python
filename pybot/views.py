@@ -59,7 +59,7 @@ def wiki_api():
 
 
 @app.route('/google_api')
-def google_api():
+def google_api(): 
     keywords = request.args.get('keywords', '')
     keywords = utils.parser(keywords)
     #Create the request saving in database
@@ -86,10 +86,12 @@ def no_result():
     """This view is use to display the elements of the database as a table"""
     list_no_result = UserRequest.query.filter_by(status=False).order_by(UserRequest.timestamp.desc()).limit(10)
     total_no_result = UserRequest.query.filter_by(status=False).count()
-    total_requests = UserRequest.query.count()
+    total_requests_valid = UserRequest.query.filter_by(status=True).count()
+    #Create a dict with the different element to display in the template
     context = {
         'list_no_result': list_no_result,
         'total_no_result': total_no_result,
-        'total_requests': total_requests
+        'total_requests_valid': total_requests_valid,
+        'total_requests': total_no_result + total_requests_valid,
     }
     return render_template('no_result.html', context=context)

@@ -10,8 +10,8 @@ var r = 150;
 
 //Detemines the area for displaying graph
 var canvas = d3.select(".graph").append("svg")
-			.attr("width", 900)
-			.attr("height", 900);
+			.attr("width", 500)
+			.attr("height", 500);
 
 //Make group with element.
 var group = canvas.append("g")

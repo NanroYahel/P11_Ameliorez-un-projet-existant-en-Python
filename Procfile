@@ -1,1 +1,1 @@
-web: gunicorn pybot:app
+web: flask db upgrade; gunicorn pybot:app

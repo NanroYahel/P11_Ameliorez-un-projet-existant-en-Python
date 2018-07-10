@@ -4,6 +4,8 @@ import unittest
 from unittest.mock import patch
 import json
 
+from flask import jsonify
+
 from pybot import utils, db
 from pybot.views import app as app
 from pybot.models import UserRequest
@@ -97,7 +99,10 @@ class TestNoResult(unittest.TestCase):
     def test_no_result_page_data(self):
         """Test that the first element of the database is display on the page"""
         rv = self.app.get('/no_result')
-        self.assertIn(b"mademanden aaucunsens", rv.data)
+        first_false_element = UserRequest.query.filter_by(status=False).order_by(UserRequest.timestamp.desc()).first()
+        test_value = bytes(first_false_element.request, "utf-8")
+        self.assertIn(test_value, rv.data)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -69,7 +69,7 @@ def google_api():
         result_lat, result_long, address = utils.get_data_from_google_maps(keywords)
         #Turn the status of the request at True and save
         user_request.status = True 
-        db.session.add(user_request)
+        db.session.add(use_request)
         db.session.commit()
         #Return the result of the request
         return jsonify(result_lat, result_long, address)

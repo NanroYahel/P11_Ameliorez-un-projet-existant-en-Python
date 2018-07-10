@@ -103,6 +103,23 @@ class TestNoResult(unittest.TestCase):
         test_value = bytes(first_false_element.request, "utf-8")
         self.assertIn(test_value, rv.data)
 
+    #New test after correcting bug
+
+    @patch('pybot.utils.get_data_from_google_maps')
+    def test_google_api_return(self, mock_get_data_from_google_maps):
+        """Test the Google map api request function"""
+        #Mock the results of the get_data_from_google_maps function
+        mock_lat = 47.231849
+        mock_lng = -1.5584598
+        mock_adress = "France"
+        mock_get_data_from_google_maps.return_value = mock_lat, mock_lng, mock_adress
+        #Accessed to the view google_api
+        rv = app.test_client().get('/google_api', data={'keywords':'test'})
+        #Convert the result send by the view to a list
+        result = rv.data.decode('utf-8')
+        result = eval(result)
+        self.assertEqual(result[0], 47.231849)
+
 
 if __name__ == "__main__":
     unittest.main()

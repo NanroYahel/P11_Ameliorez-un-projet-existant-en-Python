@@ -69,16 +69,15 @@ def google_api():
         result_lat, result_long, address = utils.get_data_from_google_maps(keywords)
         #Turn the status of the request at True and save
         user_request.status = True 
-        db.session.add(use_request)
-        db.session.commit()
         #Return the result of the request
-        return jsonify(result_lat, result_long, address)
+        result_value =  jsonify(result_lat, result_long, address)
     except TypeError:
         #Turn the status of the request at False and save
         user_request.status = False 
-        db.session.add(user_request)
-        db.session.commit()
-        return jsonify('NORETURN')
+        result_value = jsonify('NORETURN')
+    db.session.add(user_request)
+    db.session.commit()
+    return result_value
 
 #### New feature ####
 @app.route('/no_result')
